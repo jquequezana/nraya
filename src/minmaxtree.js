@@ -46,7 +46,7 @@ MinMaxTree.prototype.insertLevels = function (node, level, levelTarget, isMax) {
                 /* Marks the possible play on the board */
                 newNode.data[i][j] = isMax;
                 /* Insert new node in the childs of node */
-                node.childs.push(newNode);
+                //node.childs.push(newNode);
                 /* Recursive Insert new Nodes to levelTarget */
                 var score = this.insertLevels(newNode, level + 1, levelTarget, !isMax);
                 /* Get the best */ 
@@ -55,7 +55,7 @@ MinMaxTree.prototype.insertLevels = function (node, level, levelTarget, isMax) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
-                    else if (best == score && Math.round(Math.random() * 1)) {
+                    else if (best == score && Math.round(Math.random() * 1) ) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
@@ -66,7 +66,7 @@ MinMaxTree.prototype.insertLevels = function (node, level, levelTarget, isMax) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
-                    else if (best == score && Math.round(Math.random() * 1)) {
+                    else if (best == score && Math.round(Math.random() * 1) ) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }

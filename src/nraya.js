@@ -28,7 +28,16 @@ NRaya.prototype.getScore = function(node) {
     for (var i = 0; i < node.data.length; i++) {
         var score = { computer : 0,
                       human : 0 };
+        var moveComputer = true;
+        var moveHuman = false;
         for (var j = 0; j < node.data.length; j++) {
+            if (node.data[i][j] == true) { 
+                moveComputer = true;
+            }
+            else if (node.data[i][j] == false) {
+                moveHuman = true; 
+            }
+            
             if (node.data[i][j] == true  || node.data[i][j] == null) {
                 ++score.computer;
             }
@@ -36,10 +45,10 @@ NRaya.prototype.getScore = function(node) {
                 ++score.human;
             }
         }
-        if (score.human == node.data.length) {
+        if (score.human == node.data.length && moveHuman) {
             ++globalScore.human;
         }
-        if (score.computer == node.data.length) {
+        if (score.computer == node.data.length && moveComputer) {
             ++globalScore.computer;
         }
     }
@@ -48,8 +57,17 @@ NRaya.prototype.getScore = function(node) {
     /* Vertical score */
     for (var i = 0; i < node.data.length; i++) {
         var score = { computer : 0,
-                      human : 0 };
+                      human : 0 }
+        var moveComputer = true;
+        var moveHuman = false;;
         for (var j = 0; j < node.data.length; j++) {
+            if (node.data[j][i] == true) { 
+                moveComputer = true;
+            }
+            else if (node.data[j][i] == false) {
+                moveHuman = true; 
+            }
+            
             if (node.data[j][i] == true  || node.data[j][i] == null) {
                 ++score.computer;
             }
@@ -57,10 +75,10 @@ NRaya.prototype.getScore = function(node) {
                 ++score.human;
             }
         }
-        if (score.human == node.data.length) {
+        if (score.human == node.data.length && moveHuman) {
             ++globalScore.human;
         }
-        if (score.computer == node.data.length) {
+        if (score.computer == node.data.length && moveComputer) {
             ++globalScore.computer;
         }
     }
@@ -68,6 +86,12 @@ NRaya.prototype.getScore = function(node) {
     /* Diagonal score */
     var score = { human : { diagonalExt : 0, diagonalInt : 0 },
                   computer : { diagonalExt : 0, diagonalInt : 0 } };
+    
+    var moveComputerDE = true;
+    var moveComputerDI = true;
+    var moveHumanDE = false;
+    var moveHumanDI = false;
+
     for (var i = 0; i < node.data.length; i++) {
         /* Diagonal Exterior '\' */
         if (node.data[i][i] == null) {
@@ -75,9 +99,11 @@ NRaya.prototype.getScore = function(node) {
             ++score.computer.diagonalExt;
         }
         else if (node.data[i][i] == true) {
+            moveComputerDE = true;
             ++score.computer.diagonalExt;
         }
         else /* if (node.data[i][i] == false) */ {
+            moveHumanDE = true;
             ++score.human.diagonalExt;
         }
         /* Diagonal Interior '/' */
@@ -86,15 +112,17 @@ NRaya.prototype.getScore = function(node) {
             ++score.computer.diagonalInt;
         }
         else if (node.data[i][node.data.length - i - 1] == true) {
+            moveComputerDI = true;
             ++score.computer.diagonalInt;
         }
         else /* if (node.data[i][node.data.length - i - 1] == false) */ {
+            moveHumanDI = true;
             ++score.human.diagonalInt;
         }
     }
    
-    globalScore.human += (score.human.diagonalInt == node.data.length) + (score.human.diagonalExt == node.data.length);
-    globalScore.computer += (score.computer.diagonalInt == node.data.length) + (score.computer.diagonalExt == node.data.length); 
+    globalScore.human += (score.human.diagonalInt == node.data.length && moveHumanDI) + (score.human.diagonalExt == node.data.length && moveHumanDE);
+    globalScore.computer += (score.computer.diagonalInt == node.data.length && moveComputerDI) + (score.computer.diagonalExt == node.data.length && moveComputerDE); 
 
     console.log(globalScore); 
     return globalScore.computer - globalScore.human;

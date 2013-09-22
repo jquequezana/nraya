@@ -1,7 +1,11 @@
 $(document).ready(function() {
-    var nraya = new NRaya(4, 4);
+    var nraya = new NRaya(4, 3);
     printBoard(nraya.board);
 
+    var computerChoise = nraya.getNextStep();
+    nraya.board[computerChoise.x][computerChoise.y] = true;
+    $('#' + computerChoise.x + '-' + computerChoise.y).html('<span class="btn btn-danger btn-large disabled">C</span>');
+     
     $('tr > td').click(function(event) {
         var index = $(this).attr('id').split('-');
         if (nraya.board[index[0]][index[1]] !== null) {
