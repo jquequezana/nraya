@@ -1,11 +1,24 @@
 $(document).ready(function() {
-    var nraya = new NRaya(4, 3);
-    printBoard(nraya.board);
+   $('form').submit(function(event) {
+        event.preventDefault();
+        var level = $('#levelInput').val();
+        var size = $('#dimensionInput').val() - 0;
+        size = (!size) ? 3 : size;
+        var computerStart = $('#computerStartInput').is(":checked");
+        initNRaya(size, level, computerStart);
+   }); 
+});
 
-    var computerChoise = nraya.getNextStep();
-    nraya.board[computerChoise.x][computerChoise.y] = true;
-    $('#' + computerChoise.x + '-' + computerChoise.y).html('<span class="btn btn-danger btn-large disabled">C</span>');
-     
+function initNRaya(size, level, computerStart) {
+    var nraya = new NRaya(size, level);
+    printBoard(nraya.board);
+   
+    if (computerStart) {
+        var computerChoise = nraya.getNextStep();
+        nraya.board[computerChoise.x][computerChoise.y] = true;
+        $('#' + computerChoise.x + '-' + computerChoise.y).html('<span class="btn btn-danger btn-large disabled">C</span>');
+    }
+ 
     $('tr > td').click(function(event) {
         var index = $(this).attr('id').split('-');
         if (nraya.board[index[0]][index[1]] !== null) {
@@ -19,8 +32,7 @@ $(document).ready(function() {
         nraya.board[computerChoise.x][computerChoise.y] = true;
         $('#' + computerChoise.x + '-' + computerChoise.y).html('<span class="btn btn-danger btn-large disabled">C</span>');
     });
-
-});
+}
 
 function printBoard(board) {
     $('body').html('<div id="content"></div>');

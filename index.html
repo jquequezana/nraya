@@ -1,15 +1,43 @@
 <html>
 <head>
-    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="./css/style.css" rel="stylesheet" media="screen">
-    
     <script src="./libs/jquery.min.js"></script>
+    <script src="./libs/bootstrap.min.js"></script>
     <!-- Loading NRaya Sources -->
     <script src="./src/minmaxtree.js"></script>
     <script src="./src/nraya.js"></script>
     <script src="./src/view.js"></script>
-
 </head>
 <body>
+    <div id="content">
+    
+    <h2>NRaya MinMaxTree</h2> 
+    <form role="form">
+      <div class="form-group">
+        <label for="dimensions">Dimensión del tablero : </label>
+        <input type="number" min="3" class="form-control" id="dimensionInput" placeholder="3, 4, 5, … n">
+        <p class="help-block pull-right">Default 3</p>  
+    </div>
+      <div class="form-group">
+        <label for="level">Nivel de dificultad : </label>
+        <select class="form-control" id="levelInput">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+    </div>
+      <div class="checkbox">
+        <label>
+          <input id="computerStartInput" type="checkbox"> ¿Inicia la computadora?
+        </label>
+      </div>
+      <button type="submit" class="btn btn-lg btn-block btn-primary">Start!</button>
+    </form>
+
+
+    </div>
 </body>
 </html>
