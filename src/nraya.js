@@ -17,7 +17,7 @@ NRaya.prototype.initBoard = function() {
 
 NRaya.prototype.getNextStep = function() {
     this.tree = new MinMaxTree(this.board, this.getScore, this.level);
-    console.log(this.tree.bestPlay);
+    //console.log(this.tree.bestPlay);
     return this.tree.bestPlay;
 }
 
@@ -124,6 +124,6 @@ NRaya.prototype.getScore = function(node) {
     globalScore.human += (score.human.diagonalInt == node.data.length && moveHumanDI) + (score.human.diagonalExt == node.data.length && moveHumanDE);
     globalScore.computer += (score.computer.diagonalInt == node.data.length && moveComputerDI) + (score.computer.diagonalExt == node.data.length && moveComputerDE); 
 
-    console.log(globalScore); 
+    //console.log(globalScore); 
     return globalScore.computer - globalScore.human;
 }

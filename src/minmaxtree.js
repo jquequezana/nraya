@@ -55,7 +55,7 @@ MinMaxTree.prototype.insertLevels = function (node, level, levelTarget, isMax) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
-                    else if (best == score && Math.round(Math.random() * 1) ) {
+                    else if (levelTarget == 1 && Math.round(Math.random() * 1) || levelTarget != 1) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
@@ -66,7 +66,7 @@ MinMaxTree.prototype.insertLevels = function (node, level, levelTarget, isMax) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
-                    else if (best == score && Math.round(Math.random() * 1) ) {
+                    else if (levelTarget == 1 && Math.round(Math.random() * 1) || levelTarget != 1) {
                         best = score;
                         this.bestPlay = {x : i, y : j};
                     }
